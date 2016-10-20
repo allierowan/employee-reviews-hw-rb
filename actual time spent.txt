@@ -5,7 +5,7 @@ Add an employee to a department. : .25
 Get an employee's name. : .1
 Get an employee's salary. : .1
 Get a department's name. : .1
-Get a total salary for all employees in a department. 1
+Get a total salary for all employees in a department. .25
 Add some employee review text (a paragraph or two) to an employee. .5
 Mark whether an employee is performing satisfactorily or not satisfactorily. .5
 Give a raise to an individual. You decide if this makes sense in dollars or in percent. .5
