@@ -1,7 +1,7 @@
-Create a new department (given its name). : .15
+Create a new department (given its name). : .25
 
-Create a new employee (given his/her name, email address, phone number, and salary). : .15
-Add an employee to a department. : .5
+Create a new employee (given his/her name, email address, phone number, and salary). : .25
+Add an employee to a department. : .25
 Get an employee's name. : .5
 Get an employee's salary. : .5
 Get a department's name. : .5
