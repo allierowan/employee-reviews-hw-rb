@@ -26,5 +26,16 @@ class Department
     array.reduce(:+)
   end
 
+  def satisfactory_performers
+    self.employees.select { |emp| emp.satisfactory_performer? }
+  end
+
+  def department_raise(amount)
+    good_perf_total_salary = self.total_salary_by { |emp| emp.satisfactory_performer? }
+    raise_percent = amount.to_f / good_perf_total_salary.to_f
+    self.satisfactory_performers.each do |employee|
+      employee.give_raise(raise_percent)
+    end
+  end
 
 end
