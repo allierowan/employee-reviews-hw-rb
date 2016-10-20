@@ -14,4 +14,8 @@ class Department
     employees << employee
   end
 
+  def total_salary
+    employees.map {|employee| employee.salary}.reduce(:+)
+  end
+
 end
