@@ -15,11 +15,16 @@ class Department
   end
 
   def total_salary
-    employees.map {|employee| employee.salary}.reduce(:+)
+    employees.map {|emp| emp.salary}.reduce(:+)
   end
 
-  def departmental_raise(amount)
-
+  def total_salary_by
+    array = []
+    employees.each do |employee|
+      array << employee.salary if yield(employee)
+    end
+    array.reduce(:+)
   end
+
 
 end

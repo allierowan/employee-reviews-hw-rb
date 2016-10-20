@@ -34,4 +34,17 @@ class DepartmentTest <Minitest::Test
     assert_equal 119999, aurors.total_salary
   end
 
+  def test_get_good_performers_total_salary
+    aurors = Department.new("Aurors")
+    harry_potter = Employee.new("Harry Potter", "hpotter@hogwarts.com", "303-555-1234", 60000)
+    ron_weasley = Employee.new("Ronald Weasley", "rweasley@hogwarts.com", "303-555-9393", 59999)
+    kingsley = Employee.new("Kingsley Shacklebolt", "kshacklebolt@auroroffice.com", "303-333-3532", 120000)
+    aurors.add_employee(harry_potter)
+    aurors.add_employee(ron_weasley)
+    aurors.add_employee(kingsley)
+    harry_potter.poor_performer!
+
+    assert_equal 179999, aurors.total_salary_by {|auror| auror.satisfactory_performer? }
+  end
+
 end

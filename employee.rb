@@ -21,6 +21,10 @@ class Employee
     satisfactory_performance
   end
 
+  def poor_performer!
+    self.satisfactory_performance = false
+  end
+
   def give_raise(percentage)
     self.salary += percentage * self.salary
   end
