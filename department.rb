@@ -18,4 +18,8 @@ class Department
     employees.map {|employee| employee.salary}.reduce(:+)
   end
 
+  def departmental_raise(amount)
+
+  end
+
 end
