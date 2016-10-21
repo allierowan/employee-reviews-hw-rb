@@ -4,6 +4,12 @@ require_relative '../data_store'
 
 class DataStoreTest < Minitest::Test
 
+  # need to remove the data files to ensure a clean test environment
+  File.delete('./data/departments.csv') if File.exists?('./data/departments.csv')
+  File.delete('./data/employees.csv') if File.exists?('./data/employees.csv')
+
+  i_suck_and_my_tests_are_order_dependent!()
+
   def test_data_store_exists
     assert DataStore
   end
@@ -11,6 +17,17 @@ class DataStoreTest < Minitest::Test
   def test_data_store_accesses_all_data
     company = DataStore.new
     new_hash = { employees: [], departments: [] }
+    assert_equal new_hash, company.all
+  end
+
+  def test_data_store_accesses_all_data_with_data
+    company = DataStore.new
+
+    allie = Employee.new("Allie Rowan", "aileen.s.rowan@gmail.com", "301-332-5350", 1000000000)
+    dave = Employee.new("Bighaus", "dave@gmail.com", "301-555-1234", 1)
+    company.add(allie)
+    company.add(dave)
+    new_hash = { employees: [allie, dave], departments: [] }
     assert_equal new_hash, company.all
   end
 
@@ -74,6 +91,15 @@ class DataStoreTest < Minitest::Test
     cool_kids = Department.new("Cool Kids")
     company.add(cool_kids)
     company.deep_save
+  end
+
+  def test_zdata_persisted
+    company = DataStore.new
+    allie = Employee.new("Allie Rowan", "aileen.s.rowan@gmail.com", "301-332-5350", 1000000000)
+    dave = Employee.new("Bighaus", "dave.casagrande@gmail.com", "301-555-1234", 1)
+    cool_kids = Department.new("Cool Kids")
+    new_hash = { employees: [allie, dave], departments: [cool_kids] }
+    assert_equal new_hash, company.all
   end
 
 end

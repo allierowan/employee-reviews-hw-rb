@@ -5,8 +5,20 @@ require_relative './department'
 class DataStore
 
   def initialize
-    @employees = []
-    @departments = []
+
+    if File.exists?("./data/employees.csv")
+      employee_array = CSV.read("./data/employees.csv")
+      @employees = employee_array[0].map { |hash| Employee.new(eval(hash)[:name], eval(hash)[:email], eval(hash)[:phone], eval(hash)[:salary]) }
+    else
+      @employees = []
+    end
+
+    if File.exists?("./data/departments.csv")
+      department_array = CSV.read("./data/departments.csv")
+      @departments = department_array[0].map { |hash| Department.new(eval(hash)[:name]) }
+    else
+      @departments = []
+    end
 
   end
 
