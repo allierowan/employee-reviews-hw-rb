@@ -29,4 +29,16 @@ class Employee
     self.salary += percentage * self.salary
   end
 
+  def positive_looking_review?
+    self.review.match(/(is|been|an).*(?<!not)\s(a|an).*\sasset/)||self.review.match(/(has|is|'s)\s(?!no).*(?<!no)effective/)
+  end
+
+  def negative_looking_review?
+    self.review.match(/(has|have|had|was)\s(?!no).*(?<!no)\sconcern/)||self.review.match(/not\sdo.*well/)
+  end
+
+  def has_negative_review?
+    negative_looking_review? && !positive_looking_review?
+  end
+
 end
