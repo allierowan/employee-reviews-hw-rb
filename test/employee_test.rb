@@ -24,12 +24,6 @@ class EmployeeTest <Minitest::Test
     assert kvothe.satisfactory_performer?
   end
 
-  def test_employee_satisfactory_performance
-    kvothe = Employee.new( "Kvothe Kingkiller", "kvothe@theuniversity.com", "777-555-7777", 40000)
-    kvothe.satisfactory_performance = false
-    refute kvothe.satisfactory_performer?
-  end
-
   def test_give_raise
     kvothe = Employee.new( "Kvothe Kingkiller", "kvothe@theuniversity.com", "777-555-7777", 40000)
     kvothe.give_raise(0.1)

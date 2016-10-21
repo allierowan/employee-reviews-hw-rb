@@ -19,11 +19,7 @@ class Employee
   end
 
   def satisfactory_performer?
-    satisfactory_performance
-  end
-
-  def poor_performer!
-    self.satisfactory_performance = false
+    self.satisfactory_performance
   end
 
   def give_raise(percentage)
