@@ -38,6 +38,10 @@ class Department
     end
   end
 
+  def to_hash
+    { name: name, employees: employees }
+  end
+
   def ==(other)
     name == other.name
   end

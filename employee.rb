@@ -14,10 +14,6 @@ class Employee
     @review = ""
     @satisfactory_performance = true
 
-    CSV.open("./data/employees.csv", "wb") do |csv|
-      csv << [name, email, phone, salary, review, satisfactory_performance]
-    end
-
   end
 
   def add_review(text)
@@ -47,6 +43,10 @@ class Employee
 
   def ==(other)
     name == other.name && email == other.email && phone == other.phone && salary == other.salary
+  end
+
+  def to_hash
+    { name: name, email: email, phone: phone, salary: salary, review: review, satisfactory_performance: satisfactory_performance }
   end
 
 end
