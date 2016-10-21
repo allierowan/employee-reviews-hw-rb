@@ -45,4 +45,8 @@ class Employee
     negative_looking_review? && !positive_looking_review?
   end
 
+  def ==(other)
+    name == other.name && email == other.email && phone == other.phone && salary == other.salary
+  end
+
 end
