@@ -1,3 +1,5 @@
+require 'csv'
+
 class Employee
 
   attr_reader :name, :email, :phone
@@ -11,6 +13,11 @@ class Employee
     @salary = salary
     @review = ""
     @satisfactory_performance = true
+
+    CSV.open("./data/employees.csv", "wb") do |csv|
+      csv << [name, email, phone, salary, review, satisfactory_performance]
+    end
+
   end
 
   def add_review(text)
