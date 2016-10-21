@@ -15,6 +15,7 @@ class Employee
 
   def add_review(text)
     self.review = text
+    self.satisfactory_performance = false if has_negative_review?
   end
 
   def satisfactory_performer?
