@@ -8,14 +8,23 @@ class DataStore
 
     if File.exists?("./data/employees.csv")
       employee_array = CSV.read("./data/employees.csv")
-      @employees = employee_array[0].map { |hash| Employee.new(eval(hash)[:name], eval(hash)[:email], eval(hash)[:phone], eval(hash)[:salary]) }
+      @employees = employee_array[0].map { |hash|
+        Employee.new(eval(hash)[:name], eval(hash)[:email], eval(hash)[:phone], eval(hash)[:salary], eval(hash)[:review], eval(hash)[:satisfactory_performance])
+      }
     else
       @employees = []
     end
 
     if File.exists?("./data/departments.csv")
       department_array = CSV.read("./data/departments.csv")
-      @departments = department_array[0].map { |hash| Department.new(eval(hash)[:name]) }
+      depts = []
+      department_array[0].each do |hash|
+        department_hash = eval(hash)
+        name = department_hash[:name]
+        employees = department_hash[:employees].map { |empl_hash| get(:employees, :email, empl_hash[:email])[0]}
+        depts << Department.new(name, employees)
+      end
+      @departments = depts
     else
       @departments = []
     end
@@ -43,7 +52,10 @@ class DataStore
 
   def deep_save
     employee_data = employees.map{ |employee| employee.to_hash }.to_csv
-    department_data = departments.map { |department| department.to_hash }.to_csv
+    employee_array = []
+    department_data = departments.map { |department|
+      employee_array = department.employees.map { |employee| employee.to_hash }
+      { name: department.name, employees: employee_array }}.to_csv
     File.open('./data/employees.csv', 'w') {|f| f.write(employee_data) }
     File.open('./data/departments.csv', 'w') {|f| f.write(department_data) }
 

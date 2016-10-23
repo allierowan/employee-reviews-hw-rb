@@ -84,20 +84,24 @@ class DataStoreTest < Minitest::Test
 
   def test_save_to_file
     company = DataStore.new
-    allie = Employee.new("Allie Rowan", "aileen.s.rowan@gmail.com", "301-332-5350", 1000000000)
-    dave = Employee.new("Bighaus", "dave.casagrande@gmail.com", "301-555-1234", 1)
+    allie = Employee.new("Allie Rowan", "aileen.s.rowan@gmail.com", "301-332-5350", 1000000000, "She is AWESOME")
+    dave = Employee.new("Bighaus", "dave.casagrande@gmail.com", "301-555-1234", 1, "He's okay...")
     company.add(allie)
     company.add(dave)
     cool_kids = Department.new("Cool Kids")
+    cool_kids.add_employee(allie)
+    cool_kids.add_employee(dave)
     company.add(cool_kids)
     company.deep_save
   end
 
   def test_zdata_persisted
     company = DataStore.new
-    allie = Employee.new("Allie Rowan", "aileen.s.rowan@gmail.com", "301-332-5350", 1000000000)
-    dave = Employee.new("Bighaus", "dave.casagrande@gmail.com", "301-555-1234", 1)
+    allie = Employee.new("Allie Rowan", "aileen.s.rowan@gmail.com", "301-332-5350", 1000000000, "She is AWESOME")
+    dave = Employee.new("Bighaus", "dave.casagrande@gmail.com", "301-555-1234", 1, "He's okay...")
     cool_kids = Department.new("Cool Kids")
+    cool_kids.add_employee(allie)
+    cool_kids.add_employee(dave)
     new_hash = { employees: [allie, dave], departments: [cool_kids] }
     assert_equal new_hash, company.all
   end

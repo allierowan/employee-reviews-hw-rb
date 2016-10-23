@@ -5,9 +5,9 @@ class Department
   attr_reader :name
   attr_accessor :employees
 
-  def initialize(name)
+  def initialize(name, employees = [])
     @name = name
-    @employees = []
+    @employees = employees
   end
 
   def add_employee(employee)
