@@ -10,3 +10,7 @@ Add some employee review text (a paragraph or two) to an employee. .5
 Mark whether an employee is performing satisfactorily or not satisfactorily. .25
 Give a raise to an individual. You decide if this makes sense in dollars or in percent. .1
 Give raises to a department's employees. You must pass this method a total dollar amount, and it must distribute the raise amounts reasonably to the department's employees. Only employees who are performing satisfactorily should get raises. : 1.25
+
+Adventurer Mode : 2
+
+Epic Mode : 5.5
